@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta http-equiv="refresh" content="0; url=daily/2026-06-09.html" />
+<title>NodeShield Sport</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,400;0,500;1,400&family=Crimson+Pro:ital,wght@0,300;0,400;0,600&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --bg: #07090d; --bg-raise: #0c1018;
+    --border: #1e2a38; --border-hi: #2a3d52;
+    --green: #39ff9a; --green-dim: #1a7a4a;
+    --cyan: #00d4ff; --amber: #ffaa00;
+    --text: #b0c8b8; --text-dim: #5a7a65; --text-hi: #ddeedd;
+    --font-mono: 'DM Mono', monospace;
+    --font-serif: 'Playfair Display', serif;
+    --font-body: 'Crimson Pro', serif;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background-color: var(--bg);
+    background-image:
+      linear-gradient(rgba(57,255,154,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(57,255,154,0.03) 1px, transparent 1px);
+    background-size: 40px 40px;
+    color: var(--text);
+    font-family: var(--font-body);
+    min-height: 100vh;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+  }
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(7,9,13,0.93);
+    backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 2rem; height: 48px;
+  }
+  .nav-brand { font-family: var(--font-mono); font-size: 0.72rem; color: var(--green); letter-spacing: 0.12em; text-transform: uppercase; text-decoration: none; }
+  .nav-links { display: flex; gap: 1.75rem; list-style: none; }
+  .nav-links a { font-family: var(--font-mono); font-size: 0.68rem; color: var(--text-dim); text-decoration: none; letter-spacing: 0.08em; text-transform: uppercase; transition: color 0.2s; }
+  .nav-links a:hover { color: var(--text-hi); }
+  .nav-links a.ext { color: #2a3d52; }
+  .nav-links a.ext:hover { color: var(--text-dim); }
+
+  .splash { text-align: center; padding: 2rem; }
+  .splash-label { font-family: var(--font-mono); font-size: 0.62rem; color: var(--cyan); letter-spacing: 0.22em; text-transform: uppercase; margin-bottom: 1rem; }
+  .splash-title { font-family: var(--font-serif); font-size: clamp(2.2rem, 6vw, 3.5rem); color: var(--text-hi); line-height: 1.1; margin-bottom: 1rem; }
+  .splash-title .cursor { color: var(--green); animation: blink-cur 1s step-end infinite; }
+  @keyframes blink-cur { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+  .splash-sub { font-family: var(--font-body); font-size: 1rem; color: var(--text-dim); font-style: italic; margin-bottom: 2rem; }
+
+  .edition-badge {
+    display: inline-flex; align-items: center; gap: 0.6rem;
+    font-family: var(--font-mono); font-size: 0.62rem;
+    color: var(--text-dim); letter-spacing: 0.12em; text-transform: uppercase;
+    border: 1px solid var(--border); padding: 0.45rem 1rem; margin-bottom: 2rem;
+  }
+  .live-dot { width: 6px; height: 6px; background: var(--green); border-radius: 50%; animation: blink 1.5s ease-in-out infinite; }
+  @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.2; } }
+
+  .splash-link {
+    display: inline-block;
+    font-family: var(--font-mono); font-size: 0.7rem;
+    color: var(--green); text-decoration: none;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    border: 1px solid var(--green-dim); padding: 0.65rem 1.75rem;
+    transition: background 0.2s, color 0.2s;
+    margin-right: 0.75rem;
+  }
+  .splash-link:hover { background: var(--green); color: var(--bg); }
+  .splash-link.secondary { color: var(--text-dim); border-color: var(--border); }
+  .splash-link.secondary:hover { background: var(--bg-raise); color: var(--text-hi); }
+
+  footer {
+    position: fixed; bottom: 0; left: 0; right: 0;
+    border-top: 1px solid var(--border); padding: 0.75rem 2rem;
+    display: flex; align-items: center; justify-content: space-between;
+    font-family: var(--font-mono); font-size: 0.58rem;
+    color: var(--text-dim); letter-spacing: 0.06em; background: var(--bg);
+  }
+  footer a { color: var(--text-dim); text-decoration: none; }
+  footer a:hover { color: var(--green); }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="/index.html" class="nav-brand">NodeShield Sport</a>
+  <ul class="nav-links">
+    <li><a href="/archive.html">Archive</a></li>
+    <li><a href="/about.html">About</a></li>
+    <li><a href="https://nodeshield.net" class="ext">nodeshield.net &#8599;</a></li>
+  </ul>
+</nav>
+
+<div class="splash">
+  <p class="splash-label">// Sport Feed &mdash; Daily Coverage</p>
+  <h1 class="splash-title">NodeShield Sport<span class="cursor">_</span></h1>
+  <p class="splash-sub">Football. Formula One. Basketball. And everything else.</p>
+  <div class="edition-badge">
+    <span class="live-dot"></span>
+    Edition 001 &mdash; 09 Jun 2026 &mdash; Now Live
+  </div>
+  <br />
+  <a href="daily/2026-06-09.html" class="splash-link">Today's Brief &rarr;</a>
+  <a href="archive.html" class="splash-link secondary">Archive</a>
+</div>
+
+<footer>
+  <span>&copy; 2026 NodeShield Sport</span>
+  <span>sports.nodeshield.net</span>
+  <span><a href="https://nodeshield.net">nodeshield.net &#8599;</a></span>
+</footer>
+
+</body>
+</html>

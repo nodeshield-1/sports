@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>NodeShield Sport &mdash; Archive</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,400;0,500;1,400&family=Crimson+Pro:ital,wght@0,300;0,400;0,600&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --bg: #07090d; --bg-raise: #0c1018;
+    --border: #1e2a38; --border-hi: #2a3d52;
+    --green: #39ff9a; --green-dim: #1a7a4a;
+    --cyan: #00d4ff; --amber: #ffaa00;
+    --text: #b0c8b8; --text-dim: #5a7a65; --text-hi: #ddeedd;
+    --font-mono: 'DM Mono', monospace;
+    --font-serif: 'Playfair Display', serif;
+    --font-body: 'Crimson Pro', serif;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background-color: var(--bg);
+    background-image:
+      linear-gradient(rgba(57,255,154,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(57,255,154,0.03) 1px, transparent 1px);
+    background-size: 40px 40px;
+    color: var(--text); font-family: var(--font-body);
+    font-size: 1.1rem; line-height: 1.7; min-height: 100vh;
+  }
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(7,9,13,0.93);
+    backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 2rem; height: 48px;
+  }
+  .nav-brand { font-family: var(--font-mono); font-size: 0.72rem; color: var(--green); letter-spacing: 0.12em; text-transform: uppercase; text-decoration: none; }
+  .nav-links { display: flex; gap: 1.75rem; list-style: none; }
+  .nav-links a { font-family: var(--font-mono); font-size: 0.68rem; color: var(--text-dim); text-decoration: none; letter-spacing: 0.08em; text-transform: uppercase; transition: color 0.2s; }
+  .nav-links a:hover { color: var(--text-hi); }
+  .nav-links a.active { color: var(--green); }
+  .nav-links a.ext { color: #2a3d52; }
+  .nav-links a.ext:hover { color: var(--text-dim); }
+
+  .hero { max-width: 860px; margin: 0 auto; padding: 3rem 2rem 2rem; border-bottom: 1px solid var(--border); }
+  .hero-label { font-family: var(--font-mono); font-size: 0.62rem; color: var(--cyan); letter-spacing: 0.22em; text-transform: uppercase; margin-bottom: 0.8rem; }
+  .hero-title { font-family: var(--font-serif); font-size: clamp(1.8rem, 4vw, 2.8rem); color: var(--text-hi); line-height: 1.12; margin-bottom: 0.4rem; }
+  .hero-sub { font-family: var(--font-body); font-size: 1rem; color: var(--text-dim); font-style: italic; }
+
+  .archive-wrap { max-width: 860px; margin: 0 auto; padding: 2.5rem 2rem 4rem; }
+  .month-label { font-family: var(--font-mono); font-size: 0.6rem; color: var(--text-dim); letter-spacing: 0.2em; text-transform: uppercase; padding-bottom: 0.6rem; border-bottom: 1px solid var(--border); margin-bottom: 1rem; }
+
+  .entry {
+    display: flex; align-items: center; gap: 1.25rem;
+    padding: 0.9rem 0.75rem;
+    border-bottom: 1px solid var(--border);
+    text-decoration: none;
+    transition: background 0.15s;
+    position: relative;
+  }
+  .entry:hover { background: var(--bg-raise); }
+  .entry-latest { border-left: 2px solid var(--green); padding-left: 1rem; }
+
+  .entry-edition { font-family: var(--font-mono); font-size: 0.68rem; color: var(--green); letter-spacing: 0.06em; flex-shrink: 0; width: 80px; }
+  .entry-date { font-family: var(--font-mono); font-size: 0.6rem; color: var(--text-dim); letter-spacing: 0.08em; flex-shrink: 0; width: 105px; }
+  .entry-summary { font-family: var(--font-body); font-size: 1rem; color: var(--text-hi); flex: 1; }
+  .entry-tags { display: flex; gap: 0.35rem; flex-shrink: 0; }
+  .tag { font-family: var(--font-mono); font-size: 0.52rem; color: var(--text-dim); letter-spacing: 0.08em; border: 1px solid var(--border); padding: 0.1rem 0.4rem; text-transform: uppercase; }
+  .entry-arrow { font-family: var(--font-mono); font-size: 0.7rem; color: var(--text-dim); flex-shrink: 0; transition: color 0.2s; margin-left: 0.5rem; }
+  .entry:hover .entry-arrow { color: var(--green); }
+
+  .live-dot { display: inline-block; width: 6px; height: 6px; background: var(--green); border-radius: 50%; margin-left: 0.4rem; vertical-align: middle; animation: blink 1.5s ease-in-out infinite; }
+  @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.2; } }
+
+  .count-badge { display: block; font-family: var(--font-mono); font-size: 0.6rem; color: var(--text-dim); letter-spacing: 0.1em; text-transform: uppercase; margin-top: 2rem; padding-top: 1rem; border-top: 1px solid var(--border); }
+
+  footer { border-top: 1px solid var(--border); margin: 0 auto; max-width: 860px; padding: 1.5rem 2rem; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem; font-family: var(--font-mono); font-size: 0.58rem; color: var(--text-dim); letter-spacing: 0.06em; }
+  footer a { color: var(--text-dim); text-decoration: none; }
+  footer a:hover { color: var(--green); }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="/index.html" class="nav-brand">NodeShield Sport</a>
+  <ul class="nav-links">
+    <li><a href="/index.html">Home</a></li>
+    <li><a href="/archive.html" class="active">Archive</a></li>
+    <li><a href="/about.html">About</a></li>
+    <li><a href="https://nodeshield.net" class="ext">nodeshield.net &#8599;</a></li>
+  </ul>
+</nav>
+
+<header class="hero">
+  <p class="hero-label">// All Editions</p>
+  <h1 class="hero-title">The Back Catalogue</h1>
+  <p class="hero-sub">Every edition from Day 001 onwards. The streak lives here.</p>
+</header>
+
+<div class="archive-wrap">
+
+  <p class="month-label">// June 2026</p>
+
+  <a href="daily/2026-06-09.html" class="entry entry-latest">
+    <span class="entry-edition">Ed. 001<span class="live-dot"></span></span>
+    <span class="entry-date">09 Jun 2026</span>
+    <span class="entry-summary">World Cup in 2 days &middot; NBA Finals 2&ndash;1 &middot; Antonelli leads F1 by 66 pts after Monaco</span>
+    <div class="entry-tags"><span class="tag">Football</span><span class="tag">NBA</span><span class="tag">F1</span></div>
+    <span class="entry-arrow">&#8599;</span>
+  </a>
+
+  <!-- ADD NEW ENTRIES ABOVE THIS LINE, NEWEST FIRST -->
+  <!-- TEMPLATE:
+  <a href="daily/YYYY-MM-DD.html" class="entry">
+    <span class="entry-edition">Ed. 00X</span>
+    <span class="entry-date">DD Mon YYYY</span>
+    <span class="entry-summary">Summary of today's top stories</span>
+    <div class="entry-tags"><span class="tag">Football</span><span class="tag">F1</span></div>
+    <span class="entry-arrow">&#8599;</span>
+  </a>
+  -->
+
+  <p class="count-badge">1 edition published &mdash; updated daily</p>
+
+</div>
+
+<footer>
+  <span>&copy; 2026 NodeShield Sport</span>
+  <span>sports.nodeshield.net</span>
+  <span><a href="https://nodeshield.net">nodeshield.net &#8599;</a></span>
+</footer>
+
+</body>
+</html>

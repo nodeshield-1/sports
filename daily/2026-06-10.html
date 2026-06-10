@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>NodeShield Sport — Edition 002</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,400;0,500;1,400&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,400&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet"/>
+<style>
+:root{--bg:#07090d;--bg-raise:#0c1018;--bg-card:#101520;--border:#1e2a38;--border-hi:#2a3d52;--green:#39ff9a;--green-dim:#1a7a4a;--red:#ff4444;--amber:#ffaa00;--cyan:#00d4ff;--text:#b0c8b8;--text-dim:#5a7a65;--text-hi:#ddeedd;--font-mono:'DM Mono',monospace;--font-serif:'Playfair Display',serif;--font-body:'Crimson Pro',serif;}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+body{background-color:var(--bg);background-image:linear-gradient(rgba(57,255,154,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(57,255,154,.03) 1px,transparent 1px);background-size:40px 40px;color:var(--text);font-family:var(--font-body);font-size:1.1rem;line-height:1.7;min-height:100vh;}
+nav{position:sticky;top:0;z-index:100;background:rgba(7,9,13,.93);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;padding:0 2rem;height:48px;}
+.nav-brand{font-family:var(--font-mono);font-size:.72rem;color:var(--green);letter-spacing:.12em;text-transform:uppercase;text-decoration:none;}
+.nav-links{display:flex;gap:1.75rem;list-style:none;}
+.nav-links a{font-family:var(--font-mono);font-size:.68rem;color:var(--text-dim);text-decoration:none;letter-spacing:.08em;text-transform:uppercase;transition:color .2s;}
+.nav-links a:hover{color:var(--text-hi);}
+.nav-links a.ext{color:#2a3d52;}.nav-links a.ext:hover{color:var(--text-dim);}
+.hero{max-width:900px;margin:0 auto;padding:3rem 2rem 2rem;border-bottom:1px solid var(--border);}
+.hero-label{font-family:var(--font-mono);font-size:.62rem;color:var(--cyan);letter-spacing:.22em;text-transform:uppercase;margin-bottom:.8rem;}
+.hero-title{font-family:var(--font-serif);font-size:clamp(2rem,5vw,3rem);color:var(--text-hi);line-height:1.12;margin-bottom:.5rem;}
+.hero-sub{font-family:var(--font-body);font-size:1rem;color:var(--text-dim);font-style:italic;}
+.content-wrap{max-width:900px;margin:0 auto;padding:2rem 2rem 0;}
+.tabs-nav{display:flex;border-bottom:1px solid var(--border);margin-bottom:2.5rem;overflow-x:auto;scrollbar-width:none;}
+.tabs-nav::-webkit-scrollbar{display:none;}
+.tab-btn{font-family:var(--font-mono);font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;padding:.8rem 1.6rem;background:none;border:none;border-bottom:2px solid transparent;color:var(--text-dim);cursor:pointer;transition:color .2s,border-color .2s;white-space:nowrap;margin-bottom:-1px;}
+.tab-btn:hover{color:var(--text);}
+.tab-btn.active{color:var(--green);border-bottom-color:var(--green);}
+.tab-panel{display:none;}.tab-panel.active{display:block;}
+.scoreboard{background:var(--bg-raise);border:1px solid var(--border-hi);padding:1.25rem 1.75rem 0;margin-bottom:1.5rem;}
+.score-row{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding-bottom:1.25rem;}
+.score-team{text-align:center;flex:1;}
+.score-team-name{font-family:var(--font-mono);font-size:.72rem;color:var(--text-hi);text-transform:uppercase;letter-spacing:.06em;}
+.score-team-sub{font-family:var(--font-mono);font-size:.55rem;color:var(--text-dim);letter-spacing:.1em;text-transform:uppercase;margin-top:.2rem;}
+.score-centre{text-align:center;min-width:100px;}
+.score-value{font-family:var(--font-mono);font-size:1.9rem;font-weight:500;color:var(--green);line-height:1;}
+.score-context{font-family:var(--font-mono);font-size:.55rem;color:var(--amber);letter-spacing:.1em;text-transform:uppercase;margin-top:.3rem;}
+.score-ticker{border-top:1px solid var(--border);padding:.5rem 0;font-family:var(--font-mono);font-size:.58rem;color:var(--cyan);letter-spacing:.12em;text-transform:uppercase;text-align:center;display:flex;align-items:center;justify-content:center;gap:.5rem;}
+.live-dot{width:6px;height:6px;background:var(--green);border-radius:50%;display:inline-block;flex-shrink:0;animation:blink 1.5s ease-in-out infinite;}
+@keyframes blink{0%,100%{opacity:1;}50%{opacity:.2;}}
+.story-card{border:1px solid var(--border);background:var(--bg-card);padding:1.75rem;margin-bottom:1.25rem;transition:border-color .2s;}
+.story-card:hover{border-color:var(--border-hi);}
+.card-meta{font-family:var(--font-mono);font-size:.6rem;color:var(--text-dim);letter-spacing:.14em;text-transform:uppercase;margin-bottom:.65rem;display:flex;align-items:center;gap:.75rem;flex-wrap:wrap;}
+.t-sport{color:var(--cyan);}.t-live{color:var(--green);display:flex;align-items:center;gap:.35rem;}.t-alert{color:var(--amber);}.t-red{color:var(--red);}
+.card-title{font-family:var(--font-serif);font-size:1.3rem;color:var(--text-hi);line-height:1.3;margin-bottom:.75rem;}
+.card-body{font-size:1rem;color:var(--text);line-height:1.65;margin-bottom:1rem;}
+.card-sources{display:flex;flex-wrap:wrap;gap:.4rem;}
+.src{font-family:var(--font-mono);font-size:.58rem;color:var(--text-dim);text-decoration:none;letter-spacing:.05em;border:1px solid var(--border);padding:.18rem .5rem;transition:color .2s,border-color .2s;}
+.src:hover{color:var(--green);border-color:var(--green-dim);}
+.src::after{content:' ↗';}
+.section-label{font-family:var(--font-mono);font-size:.6rem;color:var(--text-dim);letter-spacing:.18em;text-transform:uppercase;margin:1.75rem 0 1rem;padding-bottom:.5rem;border-bottom:1px solid var(--border);}
+.standings-table{width:100%;border-collapse:collapse;margin-bottom:1.25rem;font-family:var(--font-mono);font-size:.65rem;}
+.standings-table th{color:var(--text-dim);letter-spacing:.1em;text-transform:uppercase;border-bottom:1px solid var(--border);padding:.5rem .75rem;text-align:left;}
+.standings-table td{padding:.5rem .75rem;border-bottom:1px solid var(--border);color:var(--text);}
+.standings-table tbody tr:first-child td{color:var(--green);}
+.standings-table tbody tr:nth-child(2) td,.standings-table tbody tr:nth-child(3) td{color:var(--text-hi);}
+.standings-table .pos{color:var(--text-dim);width:30px;}
+.standings-table .pts{color:var(--amber);font-weight:500;}
+.standings-table tbody tr:hover{background:var(--bg-raise);}
+.groups-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1.5rem;}
+@media(max-width:650px){.groups-grid{grid-template-columns:1fr;}}
+.group-card{border:1px solid var(--border);background:var(--bg-card);overflow:hidden;}
+.group-header{background:var(--bg-raise);border-bottom:1px solid var(--border);padding:.5rem .85rem;font-family:var(--font-mono);font-size:.6rem;color:var(--cyan);letter-spacing:.18em;text-transform:uppercase;}
+.group-table{width:100%;border-collapse:collapse;font-family:var(--font-mono);font-size:.6rem;}
+.group-table th{color:var(--text-dim);letter-spacing:.1em;text-transform:uppercase;padding:.3rem .6rem;text-align:center;border-bottom:1px solid var(--border);}
+.group-table th:first-child{text-align:left;}
+.group-table td{padding:.35rem .6rem;border-bottom:1px solid var(--border);color:var(--text);text-align:center;}
+.group-table td:first-child{text-align:left;color:var(--text-hi);}
+.group-table tr:last-child td{border-bottom:none;}
+.group-table tbody tr:hover{background:var(--bg-raise);}
+.pts-col{color:var(--amber)!important;font-weight:500;}
+footer{border-top:1px solid var(--border);margin:3rem auto 0;max-width:900px;padding:1.5rem 2rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:.5rem;font-family:var(--font-mono);font-size:.58rem;color:var(--text-dim);}
+footer a{color:var(--text-dim);text-decoration:none;}footer a:hover{color:var(--green);}
+</style>
+</head>
+<body>
+<nav>
+  <a href="../index.html" class="nav-brand">NodeShield Sport</a>
+  <ul class="nav-links">
+    <li><a href="../index.html">Home</a></li>
+    <li><a href="../archive.html">Archive</a></li>
+    <li><a href="https://nodeshield.net" class="ext">nodeshield.net ↗</a></li>
+  </ul>
+</nav>
+
+<header class="hero">
+  <p class="hero-label">// Edition 002 &middot; 10 Jun 2026</p>
+  <h1 class="hero-title">The Field Report</h1>
+  <p class="hero-sub">World Cup tomorrow. NBA Finals tonight. Antonelli in Barcelona this weekend.</p>
+</header>
+
+<div class="content-wrap">
+  <div class="tabs-nav">
+    <button class="tab-btn active" onclick="switchTab('football',this)">&#9917; Football</button>
+    <button class="tab-btn" onclick="switchTab('f1',this)">&#127937; F1</button>
+    <button class="tab-btn" onclick="switchTab('nba',this)">&#127936; NBA</button>
+    <button class="tab-btn" onclick="switchTab('others',this)">+ Others</button>
+  </div>
+
+  <!-- FOOTBALL -->
+  <div class="tab-panel active" id="tab-football">
+    <div class="scoreboard">
+      <div class="score-row">
+        <div class="score-team"><div class="score-team-name">M&eacute;xico</div><div class="score-team-sub">Group A &middot; Azteca</div></div>
+        <div class="score-centre"><div class="score-value">vs</div><div class="score-context">Tomorrow &middot; 15:00 ET</div></div>
+        <div class="score-team"><div class="score-team-name">South Africa</div><div class="score-team-sub">Opening Match</div></div>
+      </div>
+      <div class="score-ticker"><span class="live-dot"></span>World Cup 2026 &mdash; Kick-off tomorrow &middot; 48 nations &middot; USA / Canada / Mexico</div>
+    </div>
+
+    <div class="story-card">
+      <div class="card-meta"><span class="t-live"><span class="live-dot"></span>Tomorrow</span><span class="t-sport">World Cup 2026</span><span>10 Jun 2026</span></div>
+      <h2 class="card-title">The World Cup Starts Tomorrow. 48 Nations. The Biggest Tournament in History. No Excuses Left.</h2>
+      <p class="card-body">The 2026 FIFA World Cup opens at the Estadio Azteca in Mexico City on June 11th with Mexico hosting South Africa — the first of 104 matches across 16 cities in three countries. The USA kick off against Paraguay at SoFi Stadium in Inglewood on June 12th. Belgium open against Egypt in Group F on June 15th. The format is new — 12 groups of four, with the top two and the best eight third-placed teams advancing to a 32-team knockout — which creates mathematically guaranteed drama and the statistical near-certainty of at least one England exit that the nation will spend the following six years processing. The final is July 19th at MetLife Stadium, New Jersey. Everything starts tomorrow.</p>
+      <div class="card-sources"><a href="https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026" class="src" target="_blank" rel="noopener">FIFA Official</a></div>
+    </div>
+
+    <div class="story-card">
+      <div class="card-meta"><span class="t-sport">Title Race</span><span class="t-alert">Odds</span></div>
+      <h2 class="card-title">Spain and France Co-Favourites. England Third. Argentina and Brazil Behind. Germany Lurking.</h2>
+      <p class="card-body">Spain lead most bookmakers at +475 as tournament favourites, with France essentially level at +500 after a friendly defeat to Ivory Coast last week. England sit third at +650, Brazil at +800, and defending champions Argentina — led by Lionel Messi in what both he and Cristiano Ronaldo have confirmed will be their final World Cup — at +950. Germany (+1300) are the dark horse the pundits are contractually obligated to mention. The bracket, going to chalk, produces a Spain vs England final — a repeat of Euro 2024. The bracket rarely goes to chalk.</p>
+      <div class="card-sources"><a href="https://www.cbssports.com/soccer/news/fifa-world-cup-2026-odds-favorites-futures-picks-predictions-soccer-props-expert-best-bets/" class="src" target="_blank" rel="noopener">CBS Sports</a><a href="https://defirate.com/prediction-markets/world-cup-odds/" class="src" target="_blank" rel="noopener">Prediction Markets</a></div>
+    </div>
+
+    <div class="story-card">
+      <div class="card-meta"><span class="t-sport">The Last Dance</span></div>
+      <h2 class="card-title">Messi and Ronaldo at Their Sixth World Cup. History Will Be Made Before a Ball Is Kicked.</h2>
+      <p class="card-body">Lionel Messi, 38, and Cristiano Ronaldo, 41, become the first players in history to appear at six World Cups when they take the pitch this week. Messi arrives as defending champion, sits three goals behind Klose's all-time record of 16 World Cup goals, and has confirmed this is his last. Ronaldo — who has scored in five different World Cups and never played in a final — said "Definitely, yes" when asked if 2026 is his last tournament. Portugal face DR Congo on June 17th. The quarter-final draw could yet produce a meeting. The sport has been waiting twenty years for it. It would be extremely on-brand for football to arrange it and then have one of them get injured in the group stage.</p>
+      <div class="card-sources"><a href="https://www.espn.com/soccer/story/_/id/48972466/world-cup-2026-lionel-messi-cristiano-ronaldo-showdown-knockouts-argentina-portugal" class="src" target="_blank" rel="noopener">ESPN</a></div>
+    </div>
+
+    <div class="story-card">
+      <div class="card-meta"><span class="t-sport">Squads</span><span>02 Jun 2026</span></div>
+      <h2 class="card-title">1,248 Players. The Oldest Is 43. The Youngest Is 17. 891 Are at Their First World Cup.</h2>
+      <p class="card-body">All 48 squads were confirmed by FIFA on June 2nd. Craig Gordon of Scotland, 43, is the tournament's oldest player; Mexico's Gilberto Mora, 17, the youngest. 891 of the 1,248 players are competing at a World Cup for the first time. Notable absentees include Robert Lewandowski and Rodrygo. Mexico's Guillermo Ochoa, 40, is appearing at his sixth tournament after first-choice Angel Malagon suffered an Achilles rupture in March — an emergency recall that is statistically improbable and emotionally inevitable.</p>
+      <div class="card-sources"><a href="https://inside.fifa.com/organisation/media-releases/world-cup-2026-48-squads-confirmed" class="src" target="_blank" rel="noopener">FIFA Squads</a></div>
+    </div>
+
+    <div class="story-card">
+      <div class="card-meta"><span class="t-sport">Transfers</span><span class="t-alert">Window Opens 15 Jun</span></div>
+      <h2 class="card-title">Newcastle to Barcelona for £69.3M. The Window Isn't Open. The Deals Are Already Done.</h2>
+      <p class="card-body">The English summer transfer window opens June 15th. The clubs did not wait. Newcastle United have agreed a £69.3 million sale to FC Barcelona. Manchester United and Napoli are finalising a £38 million deal. Aston Villa have sold to AS Roma for £21.6 million. The pre-World Cup transfer activity is running at the usual frantic pace entirely disconnected from what will actually matter on the pitch over the next six weeks.</p>
+      <div class="card-sources"><a href="https://en.wikipedia.org/wiki/List_of_English_football_transfers_summer_2026" class="src" target="_blank" rel="noopener">Transfer List</a></div>
+    </div>
+
+    <p class="section-label">// World Cup 2026 &mdash; Group Stage Draw (Kick-off 11 Jun)</p>
+    <div class="groups-grid">
+      <div class="group-card"><div class="group-header">Group A</div><table class="group-table"><thead><tr><th>Team</th><th>P</th><th>W</th><th>D</th><th>L</th><th>GF</th><th>GA</th><th class="pts-col">Pts</th></tr></thead><tbody><tr><td>M&eacute;xico</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td class="pts-col">0</td></tr><tr><td>South Africa</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td class="pts-col">0</td></tr><tr><td>Korea Republic</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td class="pts-col">0</td></tr><tr><td>Czechia</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td class="pts-col">0</td></tr></tbody></table></div>
+      <div class="group-card"><div class="group-header">Group B</div><table class="group-table"><thead><tr><th>Team</th><th>P</th><th>W</th><th>D</th><th>L</th><th>GF</th><th>GA</th><th class="pts-col">Pts</th></tr></thead><tbody><tr><td>Canada</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td class="pts-col">0</td></tr><tr><td>Bosnia-Herz.</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td class="pts-col">0</td></tr><tr><td>Qatar</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td class="pts-col">0</td></tr><tr><td>Switzerland</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td class="pts-col">0</td></tr></tbody></table></div>
+      <div class="group-card"><div class="group-header">Group D</div><table class="group-table"><thead><tr><th>Team</th><th>P</th><th>W</th><th>D</th><th>L</th><th>GF</th><th>GA</th><th class="pts-col">Pts</th></tr></thead><tbody><tr><td>USA</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td class="pts-col">0</td></tr><tr><td>Paraguay</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td class="pts-col">0</td></tr><tr><td>Australia</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td class="pts-col">0</td></tr><tr><td>T&uuml;rkiye</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td class="pts-col">0</td></tr></tbody></table></div>
+      <div class="group-card"><div class="group-header">Group K</div><table class="group-table"><thead><tr><th>Team</th><th>P</th><th>W</th><th>D</th><th>L</th><th>GF</th><th>GA</th><th class="pts-col">Pts</th></tr></thead><tbody><tr><td>Portugal</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td class="pts-col">0</td></tr><tr><td>DR Congo</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td class="pts-col">0</td></tr><tr><td>Uzbekistan</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td class="pts-col">0</td></tr><tr><td>Colombia</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td class="pts-col">0</td></tr></tbody></table></div>
+    </div>
+  </div>
+
+  <!-- F1 -->
+  <div class="tab-panel" id="tab-f1">
+    <div class="scoreboard">
+      <div class="score-row">
+        <div class="score-team"><div class="score-team-name">Kimi Antonelli</div><div class="score-team-sub">Mercedes &middot; 156 pts</div></div>
+        <div class="score-centre"><div class="score-value">+66</div><div class="score-context">Championship Lead</div></div>
+        <div class="score-team"><div class="score-team-name">Lewis Hamilton</div><div class="score-team-sub">Ferrari &middot; 90 pts</div></div>
+      </div>
+      <div class="score-ticker"><span class="live-dot"></span>Round 7 &mdash; Barcelona-Catalunya &middot; This Weekend &middot; 12&ndash;14 Jun</div>
+    </div>
+
+    <p class="section-label">// Driver Standings &mdash; After Round 6 (Monaco)</p>
+    <table class="standings-table">
+      <thead><tr><th class="pos">Pos</th><th>Driver</th><th>Team</th><th class="pts">Pts</th></tr></thead>
+      <tbody>
+        <tr><td class="pos">1</td><td>Kimi Antonelli</td><td>Mercedes</td><td class="pts">156</td></tr>
+        <tr><td class="pos">2</td><td>Lewis Hamilton</td><td>Ferrari</td><td class="pts">90</td></tr>
+        <tr><td class="pos">3</td><td>George Russell</td><td>Mercedes</td><td class="pts">88</td></tr>
+        <tr><td class="pos">4</td><td>Charles Leclerc</td><td>Ferrari</td><td class="pts">75</td></tr>
+        <tr><td class="pos">5</td><td>Oscar Piastri</td><td>McLaren</td><td class="pts">60</td></tr>
+        <tr><td class="pos">6</td><td>Lando Norris</td><td>McLaren</td><td class="pts">58</td></tr>
+        <tr><td class="pos">7</td><td>Max Verstappen</td><td>Red Bull</td><td class="pts">43</td></tr>
+        <tr><td class="pos">8</td><td>Isack Hadjar</td><td>Red Bull</td><td class="pts">29</td></tr>
+      </tbody>
+    </table>
+
+    <div class="story-card">
+      <div class="card-meta"><span class="t-live"><span class="live-dot"></span>This Weekend</span><span class="t-sport">Round 7 &middot; Barcelona</span><span>12&ndash;14 Jun 2026</span></div>
+      <h2 class="card-title">Barcelona This Weekend. Antonelli Favourite Again. Russell Needs a Clean Race More Than Anyone.</h2>
+      <p class="card-body">Round 7 heads to the Circuit de Barcelona-Catalunya on June 12&ndash;14. The track rewards aerodynamic efficiency, which is likely another favourable weekend for the Mercedes package. Antonelli arrives with a 66-point lead and no apparent intention of slowing down. George Russell, third in the championship despite Monaco turning into a personal catalogue of errors, needs a clean, incident-free weekend. Max Verstappen arrives at a circuit that should suit the Red Bull better than Monaco did. "Should" is doing a lot of work in that sentence given 2026's results so far.</p>
+      <div class="card-sources"><a href="https://www.formula1.com/en/racing/2026" class="src" target="_blank" rel="noopener">F1 Calendar</a></div>
+    </div>
+
+    <div class="story-card">
+      <div class="card-meta"><span class="t-sport">Monaco GP Recap</span><span>08 Jun 2026</span></div>
+      <h2 class="card-title">Monaco: Antonelli Wins in Chaos. Verstappen Stalls. Russell Self-Destructs. Hamilton P2.</h2>
+      <p class="card-body">Antonelli won Monaco from lights to flag in a race that collected victims methodically. Verstappen stalled on the front row on the formation lap and retired immediately. Leclerc crashed out when the circuit surface broke up with ten laps remaining. Russell received a drive-through penalty for pit lane speeding, failed to serve it correctly, collected a second penalty, and finished outside the points. Hamilton took second. A post-race penalty for Perez gave Fernando Alonso Aston Martin's first point of the season — a development that was treated with approximately the right amount of fanfare. Antonelli now has five wins from six races. This is getting slightly absurd.</p>
+      <div class="card-sources"><a href="https://www.the-race.com/formula-1/f1-2026-monaco-grand-prix-results/" class="src" target="_blank" rel="noopener">The Race</a><a href="https://www.formula1.com/en/racing/2026/monaco" class="src" target="_blank" rel="noopener">F1 Official</a></div>
+    </div>
+
+    <div class="story-card">
+      <div class="card-meta"><span class="t-sport">Driver Story</span></div>
+      <h2 class="card-title">Antonelli Is 19 and Has Five Wins. The Championship Lead Is 66 Points. Historically, This Is Unusual.</h2>
+      <p class="card-body">Andrea Kimi Antonelli is 19 years old, has won five of the first six races of the 2026 Formula 1 season, and leads the drivers' championship by 66 points. For reference: the largest championship lead at this stage of a season in modern F1 history belonged to Michael Schumacher in 2002. Antonelli describes the new 2026 cars as "more alive" than their predecessors. Verstappen has different language for them. The gap tells its own story.</p>
+      <div class="card-sources"><a href="https://racingnews365.com/adjusted-2026-f1-championship-standings-after-costly-monaco-penalty" class="src" target="_blank" rel="noopener">RacingNews365</a></div>
+    </div>
+
+    <div class="story-card">
+      <div class="card-meta"><span class="t-red">Controversy</span><span class="t-sport">2026 Regulations</span></div>
+      <h2 class="card-title">Verstappen vs the 2026 Rules: Still Ongoing. Still Unresolved. Red Bull Still Sixth in Constructors.</h2>
+      <p class="card-body">Max Verstappen's public war with the 2026 technical regulations — which mandate a 50/50 combustion-electrical split and which he has described variously as "not racing", "a joke", and "Formula E on steroids" — continues into the Barcelona round with no sign of resolution. F1 introduced technical tweaks from Miami onwards. Verstappen called them "a bit late." Red Bull sit sixth in the constructors' championship. The four-time champion has again raised the possibility of retiring at the end of the season. Given the championship gap, this possibility appears to be increasing in probability with each passing round.</p>
+      <div class="card-sources"><a href="https://www.espn.com/f1/story/_/id/48212955/chinese-grand-prix-max-verstappen-red-bull-slams-f1-regulations-again" class="src" target="_blank" rel="noopener">ESPN</a></div>
+    </div>
+
+    <div class="story-card">
+      <div class="card-meta"><span class="t-sport">Hamilton at Ferrari</span></div>
+      <h2 class="card-title">Hamilton Back-to-Back P2. Above Leclerc in the Championship. 2026 Looks Nothing Like 2025.</h2>
+      <p class="card-body">After a difficult debut 2025 season at Ferrari — being outscored comprehensively by Leclerc in what the British press covered with complete restraint — Lewis Hamilton has turned 2026 around. Two consecutive second-place finishes. Second in the drivers' championship above his team-mate. He told reporters he is "reminding people who I am." Leclerc retired from Monaco with brake failure and is now 15 points adrift. The internal dynamic — two fast drivers, one car — is the season's most compelling subplot.</p>
+      <div class="card-sources"><a href="https://www.gpfans.com/en/f1-news/1085357/f1-standings-latest-monaco-grand-prix-2026/" class="src" target="_blank" rel="noopener">GPFans</a></div>
+    </div>
+  </div>
+
+  <!-- NBA -->
+  <div class="tab-panel" id="tab-nba">
+    <div class="scoreboard">
+      <div class="score-row">
+        <div class="score-team"><div class="score-team-name">New York Knicks</div><div class="score-team-sub">Eastern Champions</div></div>
+        <div class="score-centre"><div class="score-value">2 &ndash; 1</div><div class="score-context">NBA Finals 2026</div></div>
+        <div class="score-team"><div class="score-team-name">San Antonio Spurs</div><div class="score-team-sub">Western Champions</div></div>
+      </div>
+      <div class="score-ticker"><span class="live-dot"></span>Game 4 &mdash; Tonight &middot; 20:30 ET &middot; Madison Square Garden</div>
+    </div>
+
+    <div class="story-card">
+      <div class="card-meta"><span class="t-live"><span class="live-dot"></span>Tonight</span><span class="t-sport">NBA Finals &middot; Game 4</span><span>10 Jun 2026</span></div>
+      <h2 class="card-title">Game 4 Tonight at MSG. Every Game So Far Won by the Visiting Team. Knicks Need to End the Curse.</h2>
+      <p class="card-body">The 2026 NBA Finals has produced one of the stranger statistical anomalies in recent playoff memory: every game has been won by the road team. Game 1 in San Antonio: Knicks win. Game 2 in San Antonio: Knicks win by one point. Game 3 at Madison Square Garden: Spurs win 115&ndash;111. The series stands at Knicks 2&ndash;1. Game 4 is tonight at MSG. If the visiting team wins again, San Antonio ties the series at 2-2 and the remaining games become a genuinely open contest. The Knicks have not won an NBA Championship since 1973. Tonight would be a very good time to demonstrate home-court competence.</p>
+      <div class="card-sources"><a href="https://www.nba.com/playoffs/2026" class="src" target="_blank" rel="noopener">NBA Official</a><a href="https://www.cbssports.com/nba/news/2026-nba-playoff-bracket-matchups-schedule/" class="src" target="_blank" rel="noopener">CBS Sports</a></div>
+    </div>
+
+    <div class="story-card">
+      <div class="card-meta"><span class="t-sport">Game 3 Recap</span><span>08 Jun 2026</span></div>
+      <h2 class="card-title">Spurs 115, Knicks 111. Wembanyama 32-8-6. The Garden Was Not Ready.</h2>
+      <p class="card-body">Victor Wembanyama delivered 32 points, 8 rebounds, 6 assists, 3 blocks and 2 steals in Game 3 on 11-of-18 shooting — the best individual performance of this Finals. He became the second-youngest player to post a 30-5-5 in Finals history, behind Magic Johnson. Stephon Castle added 23 points including a clutch three with under two minutes left. Brunson matched Wembanyama with 32 points but Karl-Anthony Towns and Mikal Bridges went quiet when it mattered, and a mid-game incident in which Wembanyama clearly pushed Brunson to the floor and received no foul call became the night's other main story. Thibodeau was still arguing about it when the press conference ended.</p>
+      <div class="card-sources"><a href="https://bleacherreport.com/articles/25435477-wemby-spurs-beat-brunson-knicks-msg-box-score-stats-highlights-nba-finals-game-3" class="src" target="_blank" rel="noopener">Bleacher Report</a><a href="https://sports.yahoo.com/nba/live/spurs-vs-knicks-score-live-updates-game-3-victor-wembanyama-jalen-brunson-stats-box-score-president-donald-trump-213000599.html" class="src" target="_blank" rel="noopener">Yahoo Sports</a></div>
+    </div>
+
+    <div class="story-card">
+      <div class="card-meta"><span class="t-sport">Context</span></div>
+      <h2 class="card-title">53 Years for New York. A Rematch of 1999. San Antonio Won That Series in Five.</h2>
+      <p class="card-body">The Knicks last won an NBA Championship in 1973. The Spurs won the 1999 Finals — the last time these two franchises met at this stage — in five games. New York reached the Finals this year by sweeping the Cleveland Cavaliers after an 11-game postseason winning streak. San Antonio dispatched the Oklahoma City Thunder in seven games in the West, with a Wembanyama block in Game 7 that will be shown at Spurs events for the next thirty years. The series is 2-1. History is available to either team. Game 7, if it happens, is June 19th in San Antonio.</p>
+      <div class="card-sources"><a href="https://en.wikipedia.org/wiki/2026_NBA_Finals" class="src" target="_blank" rel="noopener">Wikipedia</a></div>
+    </div>
+
+    <div class="story-card">
+      <div class="card-meta"><span class="t-sport">Player Watch</span></div>
+      <h2 class="card-title">Wembanyama at 22 Is Doing Things That Require New Language to Describe Adequately.</h2>
+      <p class="card-body">Victor Wembanyama is 22 years old and averaging 29.4 points, 10.2 rebounds, 5.8 assists, 3.6 blocks and 1.9 steals per game in these Finals. He is 7'4", moves like a guard, shoots like a wing, and defends like a structural obstacle. The analytics community has largely stopped trying to compare him to previous players because the comparisons don't hold. He said before Game 4 that he is "looking forward to the challenge." Madison Square Garden is, characteristically, less relaxed about the situation.</p>
+      <div class="card-sources"><a href="https://www.nba.com/news/finals-film-study-game-3-2026-finals" class="src" target="_blank" rel="noopener">NBA Film Study</a></div>
+    </div>
+
+    <div class="story-card">
+      <div class="card-meta"><span class="t-sport">Series Schedule</span></div>
+      <h2 class="card-title">Games 5 Through 7 Are All Available. This Is Going the Distance.</h2>
+      <p class="card-body">The NBA Finals schedule runs through June 19th if necessary. Game 5 would be Saturday the 13th in San Antonio; Game 6 Tuesday the 16th at MSG; Game 7 Friday the 19th in San Antonio. If the road-team winning pattern holds through Game 4 tonight, this series ties at 2-2 and the entire conversation about home-court advantage becomes entirely academic. The Knicks are the higher seed. The Knicks have won zero of the games they have hosted. These facts are not easily reconciled.</p>
+      <div class="card-sources"><a href="https://www.espn.com/nba/story/_/id/48419498/nba-playoffs-2026-play-finals-schedule-scores-news-highlights-bracket-dates" class="src" target="_blank" rel="noopener">ESPN</a></div>
+    </div>
+  </div>
+
+  <!-- OTHERS -->
+  <div class="tab-panel" id="tab-others">
+    <div class="story-card">
+      <div class="card-meta"><span class="t-sport">Tennis</span><span>Roland Garros &middot; Ongoing</span></div>
+      <h2 class="card-title">Roland Garros 2026 &mdash; Clay Season at Its Peak.</h2>
+      <p class="card-body">The French Open continues on the red clay of Roland Garros. Live scores, draw, and results at the official tournament site.</p>
+      <div class="card-sources"><a href="https://www.rolandgarros.com" class="src" target="_blank" rel="noopener">Roland Garros</a><a href="https://www.atptour.com" class="src" target="_blank" rel="noopener">ATP</a><a href="https://www.wtatennis.com" class="src" target="_blank" rel="noopener">WTA</a></div>
+    </div>
+    <div class="story-card">
+      <div class="card-meta"><span class="t-sport">Rugby</span></div>
+      <h2 class="card-title">Gallagher Premiership &mdash; Playoff Stage Under Way.</h2>
+      <p class="card-body">The Premiership semi-finals are in progress. Full standings and results at Premiership Rugby.</p>
+      <div class="card-sources"><a href="https://www.premiershiprugby.com" class="src" target="_blank" rel="noopener">Premiership Rugby</a></div>
+    </div>
+    <div class="story-card">
+      <div class="card-meta"><span class="t-sport">Golf</span></div>
+      <h2 class="card-title">PGA Tour &mdash; Summer Swing. The Open at Royal Portrush in July.</h2>
+      <p class="card-body">The PGA Tour summer schedule continues ahead of The Open Championship at Royal Portrush in July.</p>
+      <div class="card-sources"><a href="https://www.pgatour.com" class="src" target="_blank" rel="noopener">PGA Tour</a></div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <span>© 2026 NodeShield Sport</span>
+  <span>sports.nodeshield.net</span>
+  <span><a href="https://nodeshield.net">nodeshield.net ↗</a></span>
+</footer>
+
+<script>
+function switchTab(id,btn){
+  document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+  document.getElementById('tab-'+id).classList.add('active');
+  btn.classList.add('active');
+}
+</script>
+</body>
+</html>

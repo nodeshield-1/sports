@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>NodeShield Play — 11 June 2026 · Four Years of Silence, Broken on Nintendo's Stage</title>
-<meta name="description" content="Kingdom Hearts 4 finally shows gameplay and lands day-one on Switch 2. Plus: the KH Collection, Project Helix, and Vanillaware ends a 23-year PC exile.">
+<title>NodeShield Sport — Edition 003 · The World Cup Begins at the Azteca</title>
+<meta name="description" content="Mexico vs South Africa opens the 48-team World Cup at the Estadio Azteca. The Knicks erase a 29-point deficit to go 3-1 in the NBA Finals.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=Playfair+Display:wght@600;700;800&family=Crimson+Pro:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
@@ -20,84 +20,208 @@ a:hover{text-decoration:underline}
 .navbar .brand{color:var(--green);letter-spacing:.08em}
 .navbar nav a{color:var(--ink-dim);margin-left:22px}
 .navbar nav a:hover{color:var(--green);text-decoration:none}
-.wrap{max-width:760px;margin:0 auto;padding:0 24px}
-header.hero{padding:72px 0 48px;border-bottom:1px solid var(--line)}
-.day-counter{font-family:var(--mono);font-size:13px;color:var(--green);letter-spacing:.18em;margin-bottom:18px}
+.wrap{max-width:860px;margin:0 auto;padding:0 24px}
+header.hero{padding:64px 0 36px}
+.day-counter{font-family:var(--mono);font-size:13px;color:var(--green);letter-spacing:.18em;margin-bottom:16px}
 .day-counter .dot{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--green);margin-right:8px;animation:pulse 2s infinite}
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
-h1.title{font-family:var(--serif);font-size:clamp(34px,5.5vw,52px);line-height:1.12;color:#eef3f6}
+h1.title{font-family:var(--serif);font-size:clamp(32px,5.5vw,50px);line-height:1.12;color:#eef3f6}
 h1.title::after{content:'_';color:var(--green);animation:blink 1.1s steps(1) infinite}
 @keyframes blink{50%{opacity:0}}
-.standfirst{margin-top:20px;font-size:21px;color:var(--ink-dim);font-style:italic}
-.seg{padding:48px 0;border-bottom:1px solid var(--line)}
-.seg-label{font-family:var(--mono);font-size:12px;color:var(--green);letter-spacing:.22em;margin-bottom:14px}
-.seg h2{font-family:var(--serif);font-size:28px;line-height:1.25;color:#e8eef2;margin-bottom:16px}
-.seg p{margin-bottom:16px}
-.seg p:last-of-type{margin-bottom:0}
-.pull{border-left:2px solid var(--green);padding:6px 0 6px 18px;margin:22px 0;font-style:italic;color:#aeb8c0;font-size:20px}
-.kv{font-family:var(--mono);font-size:14px;background:var(--bg-2);border:1px solid var(--line);padding:16px 18px;margin:20px 0;line-height:1.9}
-.kv .k{color:var(--green)}
-.sources{margin-top:20px;font-family:var(--mono);font-size:12px;color:var(--ink-dim)}
-.sources a{margin-right:14px;color:var(--ink-dim);border-bottom:1px dotted var(--line)}
-.sources a:hover{color:var(--green);text-decoration:none}
-.prevnext{display:flex;justify-content:space-between;padding:36px 0;font-family:var(--mono);font-size:13px}
+.standfirst{margin-top:18px;font-size:20px;color:var(--ink-dim);font-style:italic;max-width:680px}
+.tabs{display:flex;gap:8px;flex-wrap:wrap;margin:28px 0 0;border-bottom:1px solid var(--line);padding-bottom:0}
+.tab-btn{font-family:var(--mono);font-size:13px;letter-spacing:.1em;background:none;border:1px solid var(--line);border-bottom:none;color:var(--ink-dim);padding:10px 18px;cursor:pointer}
+.tab-btn.active{color:var(--green);border-color:var(--green);background:var(--bg-2)}
+.tab-panel{display:none;padding:36px 0}
+.tab-panel.active{display:block}
+.scoreboard{display:flex;align-items:center;justify-content:space-between;gap:16px;background:var(--bg-2);border:1px solid var(--line);padding:22px 26px;margin-bottom:26px;flex-wrap:wrap}
+.sb-team{font-family:var(--serif);font-size:24px;color:#eef3f6}
+.sb-score{font-family:var(--mono);font-size:34px;color:var(--green)}
+.sb-meta{font-family:var(--mono);font-size:12px;color:var(--ink-dim);letter-spacing:.12em;width:100%;margin-top:8px}
+.story-card{border:1px solid var(--line);background:var(--bg-2);padding:26px 28px;margin-bottom:22px}
+.card-meta{font-family:var(--mono);font-size:12px;letter-spacing:.18em;margin-bottom:12px}
+.t-sport{color:var(--green)}
+.card-title{font-family:var(--serif);font-size:26px;line-height:1.25;color:#e8eef2;margin-bottom:14px}
+.card-body{margin-bottom:12px}
+.card-body:last-of-type{margin-bottom:0}
+.card-sources{margin-top:16px;font-family:var(--mono);font-size:12px}
+.card-sources .src{margin-right:14px;color:var(--ink-dim);border-bottom:1px dotted var(--line)}
+.card-sources .src:hover{color:var(--green);text-decoration:none}
+.statline{font-family:var(--mono);font-size:14px;background:rgba(57,255,154,.05);border-left:2px solid var(--green);padding:12px 16px;margin:16px 0;line-height:1.9}
+.statline .k{color:var(--green)}
+.prevnext{display:flex;justify-content:space-between;padding:36px 0;font-family:var(--mono);font-size:13px;border-top:1px solid var(--line)}
 footer{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;padding:28px;border-top:1px solid var(--line);font-family:var(--mono);font-size:12px;color:var(--ink-dim)}
-@media(max-width:560px){body{font-size:18px}.navbar nav a{margin-left:14px}}
+@media(max-width:560px){body{font-size:18px}.navbar nav a{margin-left:14px}.sb-score{font-size:26px}}
 </style>
 </head>
 <body>
 <div class="navbar">
-  <span class="brand">NODESHIELD://PLAY</span>
+  <span class="brand">NODESHIELD://SPORT</span>
   <nav><a href="../index.html">Home</a><a href="../archive.html">Archive</a><a href="https://nodeshield.net">nodeshield.net ↗</a></nav>
 </div>
 
 <div class="wrap">
 <header class="hero">
-  <div class="day-counter"><span class="dot"></span>11 JUNE 2026 · GAMING &amp; DIGITAL CULTURE</div>
-  <h1 class="title">Four Years of Silence, Broken on Nintendo's Stage</h1>
-  <p class="standfirst">Kingdom Hearts 4 finally exists in playable-looking form — and Square Enix chose a Nintendo Direct, not a PlayStation showcase, to prove it. That choice is the real headline.</p>
+  <div class="day-counter"><span class="dot"></span>EDITION 003 · 11 JUNE 2026 · DAILY SPORT</div>
+  <h1 class="title">The World Cup Begins at the Azteca</h1>
+  <p class="standfirst">Forty-eight teams, 104 matches, 39 days — and it all starts tonight where Pelé and Maradona were crowned. Meanwhile in New York, the Knicks pulled off a comeback that belongs in the same sentence as the building.</p>
+
+  <div class="tabs">
+    <button class="tab-btn active" onclick="switchTab('football',this)">FOOTBALL</button>
+    <button class="tab-btn" onclick="switchTab('nba',this)">NBA</button>
+    <button class="tab-btn" onclick="switchTab('f1',this)">F1</button>
+    <button class="tab-btn" onclick="switchTab('others',this)">OTHERS</button>
+  </div>
 </header>
 
-<section class="seg">
-  <div class="seg-label">01 // LEAD STORY</div>
-  <h2>Kingdom Hearts 4 resurfaces: gameplay at last, Switch 2 at launch, still no date</h2>
-  <p>Announced in 2022, then four years of near-total silence — a couple of screenshots in 2025 and a reassurance that the game was "on schedule". This week's Nintendo Direct ended the drought: a new gameplay teaser of an older Sora battling a giant Darkside Heartless through Quadratum, the realistic Shibuya-mirror city, with Donald and Goofy back at his side and a brief appearance that fans clocked immediately — Xehanort.</p>
-  <p>The platform news matters more than the trailer. Kingdom Hearts 4 launches simultaneously on Switch 2, PS5, Xbox Series X|S and PC — and Nintendo's materials state it arrives on Switch 2 day one. For a series that only ever reached Switch as barely-playable cloud versions, that's a generational correction. There is still no release date, which tempers the celebration: this was proof of life, not a launch ramp.</p>
-  <div class="pull">Square Enix saved its most-awaited reveal for Nintendo's stage. The exclusivity era isn't ending quietly — it's ending strategically.</div>
-  <p>The reading from here: Square Enix waited for Switch 2's install base to exist before showing the game again, because the multiplatform launch <em>is</em> the business plan. Day-one parity across all platforms for a flagship like this would have been unthinkable for the company five years ago.</p>
-  <div class="sources">SOURCES: <a href="https://gamerant.com/kingdom-hearts-4-gameplay-trailer/" target="_blank" rel="noopener">Game Rant</a><a href="https://wccftech.com/kingdom-hearts-4-gameplay-kingdom-hearts-collection-release-date-nintendo-switch-2/" target="_blank" rel="noopener">Wccftech</a><a href="https://press-start.com.au/news/nintendo/2026/06/10/kingdom-hearts-4-is-coming-to-nintendo-switch-2-day-one-and-heres-a-new-look/" target="_blank" rel="noopener">Press Start</a></div>
-</section>
-
-<section class="seg">
-  <div class="seg-label">02 // THE COMPANION PIECE</div>
-  <h2>The entire saga in one box: Kingdom Hearts Collection lands 8 October</h2>
-  <p>The quieter announcement may move more units. Kingdom Hearts Collection [I~III] bundles the 1.5+2.5 ReMIX, 2.8 Final Chapter Prologue and KH3 with Re Mind — the complete Dark Seeker Saga — for Switch 2, PS5 and Xbox on 8 October. A demo is available now on Switch 2, sampling two slices of Kingdom Hearts 3, and owners of the old cloud versions get a discounted upgrade path.</p>
-  <p>The logic is transparent and sound: give a new console generation the full series, natively, four-plus months before whatever KH4's eventual date is. Onboarding as product.</p>
-  <div class="sources">SOURCES: <a href="https://wccftech.com/kingdom-hearts-4-gameplay-kingdom-hearts-collection-release-date-nintendo-switch-2/" target="_blank" rel="noopener">Wccftech</a><a href="https://80.lv/articles/kingdom-hearts-iv-gets-surprise-new-gameplay-trailer" target="_blank" rel="noopener">80.lv</a></div>
-</section>
-
-<section class="seg">
-  <div class="seg-label">03 // RADAR</div>
-  <h2>Quick scans</h2>
-  <div class="kv">
-<span class="k">PROJECT HELIX</span>  Microsoft shared new details on its PC-console hybrid at GDC 2026 — the next Xbox keeps blurring into a Windows machine. Worth watching against the KH4 multiplatform logic above: if every box runs everything, "platform" becomes a storefront.<br><br>
-<span class="k">VANILLAWARE → STEAM</span>  After 23 years of console-only releases, the next Vanillaware game is coming to PC. Another studio concluding that exclusivity costs more than it pays.<br><br>
-<span class="k">SWITCH 2 LINEUP</span>  This week's Direct added 33 titles to the platform — heavy on ports, with new exclusives sprinkled through. The library argument is being won by volume.<br><br>
-<span class="k">JUJUTSU KAISEN</span>  A battle-royale tie-in is confirmed for 2026. Anime licensing meets the one genre that refuses to die.
+<div id="tab-football" class="tab-panel active">
+  <div class="scoreboard">
+    <span class="sb-team">Mexico</span>
+    <span class="sb-score">vs</span>
+    <span class="sb-team">South Africa</span>
+    <span class="sb-meta">WORLD CUP 2026 · GROUP A · OPENING MATCH · ESTADIO AZTECA · 13:00 LOCAL / 19:00 GMT</span>
   </div>
-  <div class="sources">SOURCES: <a href="https://gamerant.com/gaming/" target="_blank" rel="noopener">Game Rant</a><a href="https://www.pcgamer.com/news/" target="_blank" rel="noopener">PC Gamer</a><a href="https://www.tomsguide.com/uk/gaming/news" target="_blank" rel="noopener">Tom's Guide</a></div>
-</section>
+
+  <div class="story-card">
+    <div class="card-meta"><span class="t-sport">WORLD CUP — KICKOFF DAY</span></div>
+    <h2 class="card-title">Three openers, one stadium: the Azteca makes history before a ball is kicked</h2>
+    <p class="card-body">The biggest World Cup ever staged — 48 teams across Mexico, the United States and Canada — opens this evening in the only stadium on Earth that has done this twice before. The Estadio Azteca (officially "Mexico City Stadium" for the tournament) becomes the first venue to host three World Cup opening matches, after 1970 and 1986, fresh from a 20-month, €160m renovation and packed with 80,000-plus.</p>
+    <p class="card-body">The fixture is a deliberate echo: Mexico vs South Africa reprises the 2010 opener in Johannesburg, the day of Tshabalala's screamer and a 1-1 draw. The roles are reversed now — Mexico, 14th in the FIFA rankings and unbeaten in eight (including a 5-1 dismantling of Serbia), carry home expectation; South Africa, 60th and arriving off flat draws with Nicaragua and Jamaica, carry nothing but the freedom of the underdog. Hugo Broos insists his side can spring the upset. History gives hosts a different script: no host nation has lost a World Cup opening match.</p>
+    <p class="card-body">Group A continues seven hours later when South Korea meet Czechia. The top two in each of the twelve groups advance to the new round of 32, joined by the eight best third-placed sides — a format that forgives a bad night, which both of tonight's teams will be quietly grateful for.</p>
+    <div class="card-sources"><a href="https://www.espn.com/espn/story/_/id/48998339/mexico-vs-south-africa-kick-team-news-how-watch-fifa-world-cup-opener" class="src" target="_blank" rel="noopener">ESPN</a><a href="https://www.fifa.com/en/tournaments/mens/worldcup/canadamexicousa2026" class="src" target="_blank" rel="noopener">FIFA</a><a href="https://www.euronews.com/2026/06/10/mexico-city-counts-down-to-2026-world-cup-opener-at-historic-azteca-stadium" class="src" target="_blank" rel="noopener">Euronews</a></div>
+  </div>
+
+  <div class="story-card">
+    <div class="card-meta"><span class="t-sport">WORLD CUP — TONIGHT'S SECOND ACT</span></div>
+    <h2 class="card-title">South Korea vs Czechia: the first truly open match of the tournament</h2>
+    <p class="card-body">Seven hours after the Azteca empties, Group A continues in Zapopan with the game the neutrals should actually watch. No host, no overwhelming favourite — Korea's pace in transition against a physical, set-piece-heavy Czechia. With Mexico expected to take points off both, this match is effectively a head-to-head for second place in the group, played on day one. The loser isn't eliminated — the expanded format's third-place safety net sees to that — but the winner gets to play the rest of the group stage on the front foot.</p>
+    <div class="statline">
+<span class="k">GROUP A</span> Mexico · South Africa · South Korea · Czechia<br>
+<span class="k">TONIGHT</span> South Korea vs Czechia · Estadio Akron, Zapopan · 20:00 local
+    </div>
+    <div class="card-sources"><a href="https://www.espn.com/soccer/story/_/id/48939282/2026-fifa-world-cup-fixtures-results-match-schedule-group-stage-knockout-rounds-bracket" class="src" target="_blank" rel="noopener">ESPN</a></div>
+  </div>
+
+  <div class="story-card">
+    <div class="card-meta"><span class="t-sport">WORLD CUP — THE OPENING WEEKEND</span></div>
+    <h2 class="card-title">What's next: the co-hosts enter, then Brazil</h2>
+    <p class="card-body">The tournament fans out fast. Tomorrow both remaining co-hosts make their bows: Canada open against Bosnia and Herzegovina at Toronto's BMO Field, and the United States face Paraguay at SoFi Stadium in the Friday night slot. Saturday brings the first heavyweight: Brazil against Morocco — the 2022 semi-finalists — at MetLife, alongside Qatar vs Switzerland and Haiti vs Scotland.</p>
+    <div class="statline">
+<span class="k">FRI 12</span> Canada vs Bosnia &amp; Herzegovina (Toronto) · USA vs Paraguay (SoFi Stadium)<br>
+<span class="k">SAT 13</span> Qatar vs Switzerland (Santa Clara) · Brazil vs Morocco (MetLife) · Haiti vs Scotland (Foxborough)
+    </div>
+    <div class="card-sources"><a href="https://www.espn.com/soccer/story/_/id/48939282/2026-fifa-world-cup-fixtures-results-match-schedule-group-stage-knockout-rounds-bracket" class="src" target="_blank" rel="noopener">ESPN</a><a href="https://sports.yahoo.com/soccer/article/2026-world-cup-schedule-teams-group-stage-match-dates-fixtures-how-to-watch-050724300.html" class="src" target="_blank" rel="noopener">Yahoo Sports</a></div>
+  </div>
+
+  <div class="story-card">
+    <div class="card-meta"><span class="t-sport">WORLD CUP — PORTUGAL WATCH</span></div>
+    <h2 class="card-title">Six days to Portugal's opener — and Group K runs through Colombia</h2>
+    <p class="card-body">Roberto Martínez's side, with Cristiano Ronaldo captaining at a record sixth World Cup, open against DR Congo in Houston next Wednesday, 17 June, before Uzbekistan on the 23rd and Colombia in Miami to close the group. The honest reading of Group K: the first two matches are about goal difference, and the Colombia game — Luis Díaz, James Rodríguez, ranked 13th in the world — is a straight playoff for top spot. Portugal's midfield is among the tournament's best; the question, as ever, is whether the defence holds when it matters. We'll carry every match here.</p>
+    <div class="statline">
+<span class="k">GROUP K</span> Portugal · DR Congo · Uzbekistan · Colombia<br>
+<span class="k">FIXTURES</span> 17 Jun vs DR Congo (Houston) · 23 Jun vs Uzbekistan (Houston) · vs Colombia (Miami)
+    </div>
+    <div class="card-sources"><a href="https://www.uefa.com/european-qualifiers/news/02a6-20d15939ace8-5cc9254d0851-1000--portugal-at-the-world-cup-2026-squad-fixtures-group-and-hi/" class="src" target="_blank" rel="noopener">UEFA</a><a href="https://www.aljazeera.com/amp/sports/2026/6/8/portugal-world-cup-2026-preview-players-to-watch-group-matches-and-squad" class="src" target="_blank" rel="noopener">Al Jazeera</a></div>
+  </div>
+</div>
+
+<div id="tab-nba" class="tab-panel">
+  <div class="scoreboard">
+    <span class="sb-team">Knicks</span>
+    <span class="sb-score">107 — 106</span>
+    <span class="sb-team">Spurs</span>
+    <span class="sb-meta">NBA FINALS · GAME 4 · MADISON SQUARE GARDEN · NYK LEAD SERIES 3-1</span>
+  </div>
+
+  <div class="story-card">
+    <div class="card-meta"><span class="t-sport">NBA FINALS</span></div>
+    <h2 class="card-title">Down 29, up 3-1: the Knicks steal Game 4 by a single point</h2>
+    <p class="card-body">San Antonio led 41-22 after the first quarter and by as many as 29. At half-time it was 76-49 and the Garden was a wake. Then New York outscored the Spurs 58-30 across the second half, took their first lead of the night in the dying moments, and held it — 107-106. The Knicks' biggest lead of the entire game was one point. It was the only lead that mattered.</p>
+    <p class="card-body">Jalen Brunson carried the engine room with 36, but OG Anunoby's 33 on 7-of-9 from three was the blowtorch that melted the deficit. Victor Wembanyama finished with 24 points, 13 rebounds and 3 blocks — on 9-of-25 shooting, ground down possession after possession in the half he'd need to be superhuman. Devin Vassell's 18 on 5-of-8 from deep deserved a better ending.</p>
+    <div class="statline">
+<span class="k">NYK</span> Brunson 36 pts · Anunoby 33 pts (7/9 3PT) · Towns 13 pts, 10 reb<br>
+<span class="k">SAS</span> Wembanyama 24 pts, 13 reb, 3 blk · Harper 21 pts · Vassell 18 pts, Fox 18 pts<br>
+<span class="k">SERIES</span> NYK 3-1 · Game 5 Sunday night in San Antonio
+    </div>
+    <p class="card-body">The cold reading: New York is one win from a first title since 1973, with three chances to get it. San Antonio now needs three straight wins, starting Sunday at home just to drag the series back to the Garden. Comebacks of 29 points don't happen in the Finals. This one did, and it may have decided the season.</p>
+    <div class="card-sources"><a href="https://www.nba.com" class="src" target="_blank" rel="noopener">NBA</a><a href="https://www.espn.com/nba/" class="src" target="_blank" rel="noopener">ESPN</a></div>
+  </div>
+
+  <div class="story-card">
+    <div class="card-meta"><span class="t-sport">NBA FINALS — WHAT'S NEXT</span></div>
+    <h2 class="card-title">Game 5, Sunday in San Antonio: closeout night or the start of something</h2>
+    <p class="card-body">The series shifts back to Texas with the Spurs favoured at home — and history split between two truths. The first: only one team has ever come back from 3-1 down in the Finals. The second: a young team that just blew a 29-point lead at home in a potential title-clincher's shadow has to answer questions no statistic can. Wembanyama has been monumental across the series; what San Antonio needs Sunday is for someone else to make New York pay when the double-team comes. For the Knicks the script is simpler — one more half like the second half of Game 4, anywhere, any time before Game 7.</p>
+    <div class="statline">
+<span class="k">SERIES</span> NYK 3-1 · Game 5 Sun (SAS) · Game 6 Wed (NYK, if nec.) · Game 7 Sat (SAS, if nec.)<br>
+<span class="k">STAKE</span> First Knicks championship since 1973
+    </div>
+    <div class="card-sources"><a href="https://www.nba.com" class="src" target="_blank" rel="noopener">NBA</a></div>
+  </div>
+</div>
+
+<div id="tab-f1" class="tab-panel">
+  <div class="story-card">
+    <div class="card-meta"><span class="t-sport">FORMULA 1</span></div>
+    <h2 class="card-title">Barcelona weekend: where pretenders get found out</h2>
+    <p class="card-body">The championship reconvenes at the Circuit de Barcelona-Catalunya, with practice opening tomorrow, qualifying Saturday and the race Sunday. As covered in Edition 002, Kimi Antonelli arrives with a commanding 66-point cushion at the top of the standings — and Barcelona is the calendar's most honest circuit: high-energy corners, brutal on tyres, nowhere to hide a weak car. Teams traditionally bring their biggest upgrade packages here, which makes Sunday a referendum on the season's true pecking order. If the gap survives Barcelona, the title conversation shifts from "if" to "when".</p>
+    <div class="statline">
+<span class="k">SCHEDULE</span> FP1/FP2 Fri · FP3 + Qualifying Sat · Race Sun<br>
+<span class="k">STANDINGS</span> Antonelli leads by 66 pts entering the weekend
+    </div>
+    <div class="card-sources"><a href="https://www.formula1.com" class="src" target="_blank" rel="noopener">Formula 1</a></div>
+  </div>
+</div>
+
+<div id="tab-others" class="tab-panel">
+  <div class="story-card">
+    <div class="card-meta"><span class="t-sport">GOLF</span></div>
+    <h2 class="card-title">One week to Shinnecock: Scheffler's Grand Slam appointment</h2>
+    <p class="card-body">The U.S. Open returns to Shinnecock Hills next week — practice rounds from Monday, championship rounds 18–21 June — and carries the cleanest storyline a major has had in years: Scottie Scheffler, after winning last year's PGA Championship and Open Championship, can complete the career Grand Slam. The final round falls on his 30th birthday. The bookmakers, contrarian as ever, have Bryson DeChambeau as the favourite at a course hosting its sixth Open, where the last winner here was Brooks Koepka in 2018.</p>
+    <div class="statline">
+<span class="k">US OPEN</span> Shinnecock Hills, Southampton NY · 18–21 Jun · 156-player field<br>
+<span class="k">STORYLINE</span> Scheffler chasing the career Grand Slam · final round on his 30th birthday
+    </div>
+    <div class="card-sources"><a href="https://www.golfdigest.com/story/us-open-2026-full-field-shinnecock-hills-fully-exempt-local-final-qualifiers-usga" class="src" target="_blank" rel="noopener">Golf Digest</a><a href="https://www.usopen.com/" class="src" target="_blank" rel="noopener">USGA</a></div>
+  </div>
+
+  <div class="story-card">
+    <div class="card-meta"><span class="t-sport">TENNIS</span></div>
+    <h2 class="card-title">Grass season gathers pace: Queen's men's draw opens Monday</h2>
+    <p class="card-body">The road to Wimbledon runs through west London: the women's edition of Queen's concludes this weekend, and the men's ATP 500 begins Monday with Alex de Minaur top seed, ahead of Lorenzo Musetti and Jiří Lehečka. Grass rewards the brave and punishes the slow adjuster — two weeks of evidence-gathering before the only fortnight that counts.</p>
+    <div class="statline">
+<span class="k">QUEEN'S (M)</span> 15–21 Jun · ATP 500 · Top seed: de Minaur<br>
+<span class="k">DEFENDING</span> Carlos Alcaraz won the 2025 men's title
+    </div>
+    <div class="card-sources"><a href="https://www.atptour.com" class="src" target="_blank" rel="noopener">ATP</a></div>
+  </div>
+
+  <div class="story-card">
+    <div class="card-meta"><span class="t-sport">THE WIDER FIELD</span></div>
+    <h2 class="card-title">Around the grounds</h2>
+    <p class="card-body">The sporting calendar bends entirely around Mexico City today — but the next ten days stack majors and milestones back to back: World Cup group stage, the U.S. Open at Shinnecock, Queen's, and a possible NBA champion crowned by Sunday night. June 2026 may be the densest sporting fortnight of the decade.</p>
+    <div class="card-sources"><a href="https://www.pgatour.com" class="src" target="_blank" rel="noopener">PGA Tour</a></div>
+  </div>
+</div>
 
 <div class="prevnext">
-  <a href="2026-06-10.html">← 10 June</a>
-  <span style="color:var(--ink-dim)">12 June →</span>
+  <a href="2026-06-10.html">← Edition 002</a>
+  <span style="color:var(--ink-dim)">Edition 004 →</span>
 </div>
 </div>
 
 <footer>
-  <span>© 2026 NodeShield Play</span>
-  <span>play.nodeshield.net</span>
+  <span>© 2026 NodeShield Sport</span>
+  <span>sports.nodeshield.net</span>
   <span><a href="https://nodeshield.net">nodeshield.net ↗</a></span>
 </footer>
+
+<script>
+function switchTab(id,btn){
+  document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+  document.getElementById('tab-'+id).classList.add('active');
+  btn.classList.add('active');
+}
+</script>
 </body>
 </html>
